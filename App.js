@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { API_URL } from './environment'
 
 export default function App() {
   const [studyKey, setStudyKey] = useState('')
   const [study, setStudy] = useState()
 
   async function handleSubmit() {
-    await fetch(`http://localhost:3000/api/studies/key/${studyKey.trim()}`)
+    await fetch(`${API_URL}/studies/key/${studyKey.trim()}`)
       .then((response) => response.json())
       .then((data) => setStudy(data))
   }
