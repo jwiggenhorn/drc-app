@@ -5,12 +5,11 @@ import { API_URL } from './environment'
 
 export default function App() {
   const [studyKey, setStudyKey] = useState('')
-  const [study, setStudy] = useState()
 
   async function handleSubmit() {
-    await fetch(`${API_URL}/studies/key/${studyKey.trim()}`)
+    await fetch(`${API_URL}/study/${studyKey.trim()}`)
       .then((response) => response.json())
-      .then((data) => setStudy(data))
+      .then((data) => console.log(data))
   }
 
   return (
@@ -23,9 +22,6 @@ export default function App() {
       />
       <Button title="Submit" onPress={handleSubmit} />
       <StatusBar style="auto" />
-      {study && study.name && (
-        <Text>Study key corresponds to study with name: {study.name}</Text>
-      )}
     </View>
   )
 }
