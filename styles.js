@@ -17,4 +17,8 @@ export const styles = StyleSheet.create({
     margin: 12,
     color: 'red',
   },
+  sliders: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 })

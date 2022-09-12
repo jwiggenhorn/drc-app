@@ -1,6 +1,7 @@
-import { Text, View } from 'react-native'
+import { Text, View, Switch } from 'react-native'
 import { styles } from '../styles'
 import { Joystick } from 'react-joystick-component'
+import MultiSlider from '@ptomasroos/react-native-multi-slider'
 
 export default function DataCapture({ route }) {
   return (
@@ -13,15 +14,20 @@ export default function DataCapture({ route }) {
 function Control({ profile }) {
   switch (profile) {
     case 0:
-      return <Text>Vertical Slider</Text>
+      return <MultiSlider vertical />
     case 1:
-      return <Text>Horizontal Slider</Text>
+      return <MultiSlider />
     case 2:
       return <Joystick />
     case 3:
-      return <Text>Toggle</Text>
+      return <Switch />
     case 4:
-      return <Text>Horizontal Slider and Vertical Slider</Text>
+      return (
+        <View style={styles.sliders}>
+          <MultiSlider />
+          <MultiSlider vertical />
+        </View>
+      )
     case 5:
       return <Text>Joystick and Vertical Slider</Text>
     case 6:
