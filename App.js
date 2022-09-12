@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import StudyKeyEntry from './pages/StudyKeyEntry'
-import DataCapture from './pages/DataCapture'
+import StudyKeyEntry from './pages/study-key-entry'
+import DataCapture from './pages/data-capture'
 
 const Stack = createNativeStackNavigator()
 
