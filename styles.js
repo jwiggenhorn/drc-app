@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     margin: 12,
     color: 'red',
   },
-  sliders: {
+  multipleControls: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
