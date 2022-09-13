@@ -1,7 +1,8 @@
-import { Text, View, Switch } from 'react-native'
+import { Text, View, Switch, Button } from 'react-native'
 import { styles } from '../styles'
 import { Joystick } from 'react-joystick-component'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
+import ClickNHold from 'react-click-n-hold'
 
 export default function DataCapture({ route }) {
   return (
@@ -29,19 +30,68 @@ function Control({ profile }) {
         </View>
       )
     case 5:
-      return <Text>Joystick and Vertical Slider</Text>
+      return (
+        <View style={styles.sliders}>
+          <Joystick />
+          <MultiSlider vertical />
+        </View>
+      )
     case 6:
-      return <Text>Button</Text>
+      return (
+        <ClickNHold>
+          <Button title="PUSH"/>
+        </ClickNHold>
+      )
     case 7:
-      return <Text>2 Buttons</Text>
+      return (
+        <View style={styles.sliders}>
+          <ClickNHold> 
+            <Button title="1" /> 
+          </ClickNHold>
+          <ClickNHold> 
+            <Button title="2" /> 
+          </ClickNHold>
+        </View>
+      )
     case 8:
-      return <Text>3 Buttons</Text>
+      return (
+        <View style={styles.sliders}>
+          <ClickNHold> 
+            <Button title="1" /> 
+          </ClickNHold>
+          <ClickNHold> 
+            <Button title="2" /> 
+          </ClickNHold>
+          <ClickNHold> 
+            <Button title="3" /> 
+          </ClickNHold>
+        </View>
+      )
     case 9:
-      return <Text>Vertical Slider and Button</Text>
+      return (
+        <View style={styles.sliders}>
+          <MultiSlider vertical />
+          <ClickNHold> 
+            <Button title="PUSH" /> 
+          </ClickNHold>
+        </View>
+      )
     case 10:
-      return <Text>Joystick and Button</Text>
+      return (
+        <View style={styles.sliders}>
+          <Joystick />
+          <ClickNHold> 
+            <Button title="PUSH" /> 
+          </ClickNHold>
+        </View>
+      )
     case 11:
-      return <Text>Vertical Slider and Joystick</Text>
+      return (
+        <View style={styles.sliders}>
+          <MultiSlider vertical />
+          <Joystick />
+        </View>
+      )
     case 12:
       return <Text>Horizontal Slider and Joystick</Text>
     case 13:
