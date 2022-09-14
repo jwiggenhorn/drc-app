@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Text, View, Switch, Button } from 'react-native'
 import { styles } from '../styles'
 import { Joystick } from 'react-joystick-component'
@@ -5,9 +6,17 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import ClickNHold from 'react-click-n-hold'
 
 export default function DataCapture({ route }) {
+  const [currentProfile, setCurrentProfile] = useState(0)
+
   return (
-    <View style={styles.container}>
-      <Control profile={route.params.profile} />
+    <View
+      onTouchStart={() => {
+        setCurrentProfile((currentProfile + 1) % 17)
+        console.log(currentProfile)
+      }}
+      style={styles.container}
+    >
+      <Control profile={currentProfile} />
     </View>
   )
 }

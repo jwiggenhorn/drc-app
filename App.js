@@ -13,7 +13,7 @@ export default function App() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Study Key Entry" component={StudyKeyEntry} />
+        <Stack.Screen name="Study Key Entry" component={DataCapture} />
         <Stack.Screen name="Data Capture" component={DataCapture} />
       </Stack.Navigator>
     </NavigationContainer>
