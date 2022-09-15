@@ -1,32 +1,32 @@
-import { View, Button } from 'react-native';
-import { styles } from '../styles';
+import { View, Button } from 'react-native'
+import { useState } from 'react'
+import { styles } from '../styles'
 
-var startTime = 0;
-var stopTime = 0;
+export default function ButtonHeader() {
+  const [isCapturing, setIsCapturing] = useState(false)
+  const [startTime, setStartTime] = useState(0)
+  const [stopTime, setStopTime] = useState(0)
 
-export default function ButtonLayout() {
-    return (
-        <View style={{ flexDirection:"row" }}>
-            <StartButton/>
-            <StopButton/>
-        </View>
-    )
-}
-
-function StartButton()
-{
-    return (
-        <View style={styles.buttonStyle}>
-            <Button title="Start" onPress={() => {startTime = Date.now(); console.log(startTime);}}></Button>
-        </View>
-    )
-}
-
-function StopButton()
-{
-    return (
-        <View style={styles.buttonStyle}>
-            <Button title="Stop" onPress={() => {stopTime = Date.now(); console.log(stopTime);}}></Button>
-        </View>
-    )
+  return (
+    <View style={styles.header}>
+      {isCapturing ? (
+        <Button
+          title="Stop"
+          onPress={() => {
+            setStopTime(Date.now())
+            setIsCapturing(false)
+            // TODO: pop up confirmation modal
+          }}
+        />
+      ) : (
+        <Button
+          title="Start"
+          onPress={() => {
+            setStartTime(Date.now())
+            setIsCapturing(true)
+          }}
+        />
+      )}
+    </View>
+  )
 }

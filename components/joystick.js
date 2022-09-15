@@ -1,17 +1,18 @@
 import { Joystick } from 'react-joystick-component'
 
-export function SpawnJoyStick(){
+export default function JoystickControl() {
+  const data = []
+  function handleMove(e) {
+    const startTime = 0 // placeholder, need to get the startTime from the header somehow
+    const timestamp = Date.now() - startTime
 
-    const xArray = [];
-    const yArray = [];
-    var a = 0;
+    // also need to figure out the conversion from x, y coordinates
+    // to clock face digits. for now just using x value as placeholder
 
-    return (
-        <Joystick move={(e) => {
-            xArray[a] = e.x;
-            yArray[a] = e.y;
-            ++a;
-        }} 
-        throttle={100}/>
-    )
+    data.push({ value: e.x, timestamp })
+  }
+
+  return (
+    <Joystick move={handleMove} stop={() => console.log(data)} throttle={10} />
+  )
 }
