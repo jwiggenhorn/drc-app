@@ -1,11 +1,11 @@
+import { useContext, useState } from 'react'
 import { View, Button } from 'react-native'
-import { useState } from 'react'
 import { styles } from '../styles'
+import { TimeContext } from '../App'
 
 export default function ButtonHeader() {
   const [isCapturing, setIsCapturing] = useState(false)
-  const [startTime, setStartTime] = useState(0)
-  const [stopTime, setStopTime] = useState(0)
+  const { setStartTime } = useContext(TimeContext)
 
   return (
     <View style={styles.header}>
@@ -13,7 +13,6 @@ export default function ButtonHeader() {
         <Button
           title="Stop"
           onPress={() => {
-            setStopTime(Date.now())
             setIsCapturing(false)
             // TODO: pop up confirmation modal
           }}
