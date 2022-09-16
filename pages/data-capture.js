@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Text, View, Switch, Button } from 'react-native'
 import { styles } from '../styles'
-import { Joystick } from 'react-joystick-component'
+import Joystick from '../components/joystick'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import ClickNHold from 'react-click-n-hold'
 
