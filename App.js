@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import StudyKeyEntry from './pages/study-key-entry'
 import DataCapture from './pages/data-capture'
-import StartStopButton from './components/header-layout'
+import HeaderButton from './components/header-button'
 
 export const TimeContext = createContext(null)
 const Stack = createNativeStackNavigator()
@@ -24,7 +24,7 @@ export default function App() {
             name="Data Capture"
             component={DataCapture}
             options={{
-              header: () => <StartStopButton />,
+              header: () => <HeaderButton />,
             }}
           />
         </Stack.Navigator>

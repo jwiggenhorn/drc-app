@@ -17,7 +17,7 @@ export default function StudyKeyEntry({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.enterStudyKeyContainer}>
       <Text>Enter a study key:</Text>
       <TextInput
         style={styles.input}
