@@ -30,4 +30,8 @@ export const styles = StyleSheet.create({
     margin: 12,
     color: 'red',
   },
+  control: {
+    flex: 1,
+    alignItems: 'center',
+  },
 })

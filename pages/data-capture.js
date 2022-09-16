@@ -3,6 +3,7 @@ import { styles } from '../styles'
 import Joystick from '../components/joystick'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import ClickNHold from 'react-click-n-hold'
+import MultiControls from '../components/multi-controls'
 
 export default function DataCapture({ route }) {
   return (
@@ -24,25 +25,17 @@ function Control({ profile }) {
       return <Switch />
     case 4:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 100 }} />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          </View>
-        </>
+        <MultiControls>
+          <MultiSlider containerStyle={{ paddingLeft: 100 }} />
+          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+        </MultiControls>
       )
     case 5:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Joystick />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          </View>
-        </>
+        <MultiControls>
+          <Joystick />
+          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+        </MultiControls>
       )
     case 6:
       return (
@@ -52,133 +45,89 @@ function Control({ profile }) {
       )
     case 7:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="  1  " />
-            </ClickNHold>
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="  2  " />
-            </ClickNHold>
-          </View>
-        </>
+        <MultiControls>
+          <ClickNHold>
+            <Button title="  1  " />
+          </ClickNHold>
+          <ClickNHold>
+            <Button title="  2  " />
+          </ClickNHold>
+        </MultiControls>
       )
     case 8:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="  1  " />
-            </ClickNHold>
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="  2  " />
-            </ClickNHold>
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="  3  " />
-            </ClickNHold>
-          </View>
-        </>
+        <MultiControls>
+          <ClickNHold>
+            <Button title="  1  " />
+          </ClickNHold>
+          <ClickNHold>
+            <Button title="  2  " />
+          </ClickNHold>
+          <ClickNHold>
+            <Button title="  3  " />
+          </ClickNHold>
+        </MultiControls>
       )
     case 9:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="PUSH" />
-            </ClickNHold>
-          </View>
-        </>
+        <MultiControls>
+          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <ClickNHold>
+            <Button title="PUSH" />
+          </ClickNHold>
+        </MultiControls>
       )
     case 10:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Joystick />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <ClickNHold>
-              <Button title="PUSH" />
-            </ClickNHold>
-          </View>
-        </>
+        <MultiControls>
+          <Joystick />
+          <ClickNHold>
+            <Button title="PUSH" />
+          </ClickNHold>
+        </MultiControls>
       )
     case 11:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Joystick />
-          </View>
-        </>
+        <MultiControls>
+          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <Joystick />
+        </MultiControls>
       )
     case 12:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 100 }} />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Joystick />
-          </View>
-        </>
+        <MultiControls>
+          <MultiSlider containerStyle={{ paddingLeft: 100 }} />
+          <Joystick />
+        </MultiControls>
       )
     case 13:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          </View>
-        </>
+        <MultiControls>
+          <Switch />
+          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+        </MultiControls>
       )
     case 14:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <MultiSlider />
-          </View>
-        </>
+        <MultiControls>
+          <Switch />
+          <MultiSlider containerStyle={{ paddingRight: 30 }} />
+        </MultiControls>
       )
     case 15:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Joystick />
-          </View>
-        </>
+        <MultiControls>
+          <Switch />
+          <Joystick />
+        </MultiControls>
       )
     case 16:
       return (
-        <>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <Switch />
-          </View>
-        </>
+        <MultiControls>
+          <Switch />
+          <Switch />
+          <Switch />
+        </MultiControls>
       )
     default:
       return <Text>Profile {profile} does not exist.</Text>

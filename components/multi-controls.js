@@ -1,8 +1,13 @@
-export default function MultiControls({ controls }) {
+import { View } from 'react-native'
+import { styles } from '../styles'
+
+export default function MultiControls({ children }) {
   return (
     <>
-      {controls.map((control) => (
-        <View style={{ flex: 1, alignItems: 'center' }}>{control}</View>
+      {children.map((child, i) => (
+        <View key={i} style={styles.control}>
+          {child}
+        </View>
       ))}
     </>
   )
