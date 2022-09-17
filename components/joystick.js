@@ -4,18 +4,19 @@ import { TimeContext } from '../App'
 
 export default function JoystickControl() {
   const { startTime } = useContext(TimeContext)
-
   const data = []
+
   function handleMove(e) {
     const timestamp = Date.now() - startTime
+    const radians = Math.atan2(e.y, e.x) - Math.PI / 2
 
-    // need to figure out the conversion from x, y coordinates
-    // to clock face digits. for now just using x value as placeholder
-    // (we should probably do the conversion afterwards when posting the data
-    //  to the backend so that we don't lag during data capture...
-    //  or the API could handle it)
+    let degrees = ((radians * 180) / Math.PI) * -1
+    if (degrees < 0) degrees += 360.0
 
-    data.push({ value: e.x, timestamp })
+    let value = Math.round((degrees * 2) / 60)
+    if (value == 0) value = 12
+
+    data.push({ timestamp, value })
   }
 
   return (
