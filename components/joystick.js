@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Joystick } from 'react-joystick-component'
 import { TimeContext } from '../App'
 
-export default function JoystickControl() {
+export default function JoystickWrapper() {
   const { startTime } = useContext(TimeContext)
   const data = []
 
@@ -19,7 +19,10 @@ export default function JoystickControl() {
     data.push({ timestamp, value })
   }
 
-  return (
-    <Joystick move={handleMove} stop={() => console.log(data)} throttle={10} />
-  )
+  function handleStop() {
+    const timestamp = Date.now() - startTime
+    data.push({ timestamp, value: 0 })
+  }
+
+  return <Joystick move={handleMove} stop={handleStop} throttle={10} />
 }
