@@ -1,42 +1,34 @@
-import { useState } from 'react'
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import { API_URL } from './environment'
+import { createContext, useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import StudyKeyEntry from './pages/study-key-entry'
+import DataCapture from './pages/data-capture'
+import HeaderButton from './components/header-button'
+
+export const TimeContext = createContext(null)
+const Stack = createNativeStackNavigator()
 
 export default function App() {
-  const [studyKey, setStudyKey] = useState('')
-
-  async function handleSubmit() {
-    await fetch(`${API_URL}/study/${studyKey.trim()}`)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-  }
+  const [startTime, setStartTime] = useState(0)
 
   return (
-    <View style={styles.container}>
-      <Text>Enter a study key:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setStudyKey}
-        value={studyKey}
-      />
-      <Button title="Submit" onPress={handleSubmit} />
-      <StatusBar style="auto" />
-    </View>
+    <TimeContext.Provider value={{ startTime, setStartTime }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Study Key Entry"
+            component={StudyKeyEntry}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Data Capture"
+            component={DataCapture}
+            options={{
+              header: () => <HeaderButton />,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </TimeContext.Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-})
