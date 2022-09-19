@@ -1,8 +1,9 @@
-import { Text, View, Switch, Button } from 'react-native'
+import { Text, View } from 'react-native'
 import { styles } from '../styles'
+import Slider from '../components/slider'
 import Joystick from '../components/joystick'
-import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import ClickNHold from 'react-click-n-hold'
+import Switch from '../components/switch'
+import HoldButton from '../components/hold-button'
 import MultiControls from '../components/multi-controls'
 
 export default function DataCapture({ route }) {
@@ -16,9 +17,9 @@ export default function DataCapture({ route }) {
 function Control({ profile }) {
   switch (profile) {
     case 0:
-      return <MultiSlider vertical />
+      return <Slider vertical />
     case 1:
-      return <MultiSlider />
+      return <Slider />
     case 2:
       return <Joystick />
     case 3:
@@ -26,77 +27,59 @@ function Control({ profile }) {
     case 4:
       return (
         <MultiControls>
-          <MultiSlider containerStyle={{ paddingLeft: 100 }} />
-          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <Slider style={{ paddingLeft: 100 }} />
+          <Slider style={{ paddingLeft: 30 }} vertical />
         </MultiControls>
       )
     case 5:
       return (
         <MultiControls>
           <Joystick />
-          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <Slider style={{ paddingLeft: 30 }} vertical />
         </MultiControls>
       )
     case 6:
-      return (
-        <ClickNHold>
-          <Button title="PUSH" />
-        </ClickNHold>
-      )
+      return <HoldButton text="PUSH" />
     case 7:
       return (
         <MultiControls>
-          <ClickNHold>
-            <Button title="  1  " />
-          </ClickNHold>
-          <ClickNHold>
-            <Button title="  2  " />
-          </ClickNHold>
+          <HoldButton text="  1  " />
+          <HoldButton text="  2  " />
         </MultiControls>
       )
     case 8:
       return (
         <MultiControls>
-          <ClickNHold>
-            <Button title="  1  " />
-          </ClickNHold>
-          <ClickNHold>
-            <Button title="  2  " />
-          </ClickNHold>
-          <ClickNHold>
-            <Button title="  3  " />
-          </ClickNHold>
+          <HoldButton text="  1  " />
+          <HoldButton text="  2  " />
+          <HoldButton text="  3  " />
         </MultiControls>
       )
     case 9:
       return (
         <MultiControls>
-          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
-          <ClickNHold>
-            <Button title="PUSH" />
-          </ClickNHold>
+          <Slider style={{ paddingLeft: 30 }} vertical />
+          <HoldButton text="PUSH" />
         </MultiControls>
       )
     case 10:
       return (
         <MultiControls>
           <Joystick />
-          <ClickNHold>
-            <Button title="PUSH" />
-          </ClickNHold>
+          <HoldButton text="PUSH" />
         </MultiControls>
       )
     case 11:
       return (
         <MultiControls>
-          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <Slider style={{ paddingLeft: 30 }} vertical />
           <Joystick />
         </MultiControls>
       )
     case 12:
       return (
         <MultiControls>
-          <MultiSlider containerStyle={{ paddingLeft: 100 }} />
+          <Slider style={{ paddingLeft: 100 }} />
           <Joystick />
         </MultiControls>
       )
@@ -104,14 +87,14 @@ function Control({ profile }) {
       return (
         <MultiControls>
           <Switch />
-          <MultiSlider containerStyle={{ paddingLeft: 30 }} vertical />
+          <Slider style={{ paddingLeft: 30 }} vertical />
         </MultiControls>
       )
     case 14:
       return (
         <MultiControls>
           <Switch />
-          <MultiSlider containerStyle={{ paddingRight: 30 }} />
+          <Slider style={{ paddingRight: 30 }} />
         </MultiControls>
       )
     case 15:
