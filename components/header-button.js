@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import { View, Button } from 'react-native'
 import { styles } from '../styles'
 import { TimeContext } from '../App'
+import setModalVisible from './confirmation-modal'
 
 export default function HeaderButton() {
   const [isCapturing, setIsCapturing] = useState(false)
@@ -15,6 +16,7 @@ export default function HeaderButton() {
           onPress={() => {
             setIsCapturing(false)
             // TODO: show confirmation modal
+            //setModalVisible(true)
           }}
         />
       ) : (
