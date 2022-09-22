@@ -5,13 +5,11 @@ import Joystick from '../components/joystick'
 import Switch from '../components/switch'
 import HoldButton from '../components/hold-button'
 import MultiControls from '../components/multi-controls'
-import ConfirmationModal from '../components/confirmation-modal'
 
 export default function DataCapture({ route }) {
   return (
     <View style={styles.dataCaptureContainer}>
       <Control profile={route.params.profile} />
-      <ConfirmationModal></ConfirmationModal>
     </View>
   )
 }
