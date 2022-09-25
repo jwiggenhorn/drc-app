@@ -1,24 +1,31 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-native'
 import ClickNHold from 'react-click-n-hold'
-import { TimeContext } from '../App'
+import { CaptureContext } from '../App'
 
-export default function HoldButton({ text }) {
-  const { startTime } = useContext(TimeContext)
-  const data = []
+export default function HoldButton({ text, number = 'One' }) {
+  const { startTime, isCapturing, participantData } = useContext(CaptureContext)
+  const [data] = useState([])
 
-  function handleStart(e) {
+  useEffect(() => {
+    participantData[`button${number}Inputs`] = data
+  }, [isCapturing])
+
+  function handleStart() {
     const timestamp = Date.now() - startTime
     data.push({ timestamp, value: true })
   }
 
-  function handleStop(e) {
+  function handleStop() {
     const timestamp = Date.now() - startTime
     data.push({ timestamp, value: false })
   }
 
   return (
-    <ClickNHold onStart={handleStart} onEnd={handleStop}>
+    <ClickNHold
+      onStart={isCapturing ? handleStart : null}
+      onEnd={isCapturing ? handleStop : null}
+    >
       <Button title={text} />
     </ClickNHold>
   )

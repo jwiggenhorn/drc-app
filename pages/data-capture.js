@@ -43,16 +43,16 @@ function Control({ profile }) {
     case 7:
       return (
         <MultiControls>
-          <HoldButton text="  1  " />
-          <HoldButton text="  2  " />
+          <HoldButton text="  1  " number="One" />
+          <HoldButton text="  2  " number="Two" />
         </MultiControls>
       )
     case 8:
       return (
         <MultiControls>
-          <HoldButton text="  1  " />
-          <HoldButton text="  2  " />
-          <HoldButton text="  3  " />
+          <HoldButton text="  1  " number="One" />
+          <HoldButton text="  2  " number="Two" />
+          <HoldButton text="  3  " number="Three" />
         </MultiControls>
       )
     case 9:
@@ -107,9 +107,9 @@ function Control({ profile }) {
     case 16:
       return (
         <MultiControls>
-          <Switch />
-          <Switch />
-          <Switch />
+          <Switch number="One" />
+          <Switch number="Two" />
+          <Switch number="Three" />
         </MultiControls>
       )
     default:

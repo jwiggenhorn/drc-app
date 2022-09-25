@@ -1,11 +1,35 @@
 import { useContext, useState } from 'react'
-import { View, Button } from 'react-native'
+import { View, Button, Modal, Text } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { styles } from '../styles'
-import { TimeContext } from '../App'
+import { CaptureContext } from '../App'
+import { API_URL } from '../environment'
 
 export default function HeaderButton() {
-  const [isCapturing, setIsCapturing] = useState(false)
-  const { setStartTime } = useContext(TimeContext)
+  const { setStartTime, isCapturing, setIsCapturing, participantData } =
+    useContext(CaptureContext)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const navigation = useNavigation()
+
+  async function handleSubmit() {
+    await fetch(`${API_URL}/study/data`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(participantData),
+    })
+      .then((data) => {
+        console.log(data)
+        if (data.status == 201) {
+          navigation.navigate('Study Key Entry')
+        } else {
+          setErrorMessage(data.statusText)
+        }
+      })
+      .catch((e) => console.error(e))
+  }
 
   return (
     <View style={styles.header}>
@@ -14,7 +38,8 @@ export default function HeaderButton() {
           title="Stop"
           onPress={() => {
             setIsCapturing(false)
-            // TODO: show confirmation modal
+            // TODO: Pause the music
+            setModalVisible(true)
           }}
         />
       ) : (
@@ -26,6 +51,33 @@ export default function HeaderButton() {
           }}
         />
       )}
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        onRequestClose={() => setModalVisible(!modalVisible)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modal}>
+            <Text style={styles.modalText}>
+              Do you want to stop capturing and submit the data?
+            </Text>
+            <View style={styles.modalButtons}>
+              <Button
+                color="gray"
+                title="Cancel"
+                onPress={() => {
+                  setModalVisible(false)
+                  //TODO: resume the music
+                }}
+              />
+              <Button title="Submit" onPress={handleSubmit} />
+            </View>
+            <Text style={styles.error}>
+              {errorMessage && `Error: ${errorMessage}`}
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
