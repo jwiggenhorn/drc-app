@@ -1,11 +1,12 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { View, Button } from 'react-native'
 import { styles } from '../styles'
-import { TimeContext } from '../App'
+import { CaptureContext } from '../App'
+import { API_URL } from '../environment'
 
 export default function HeaderButton() {
-  const [isCapturing, setIsCapturing] = useState(false)
-  const { setStartTime } = useContext(TimeContext)
+  const { setStartTime, isCapturing, setIsCapturing, participantData } =
+    useContext(CaptureContext)
 
   return (
     <View style={styles.header}>
@@ -14,7 +15,7 @@ export default function HeaderButton() {
           title="Stop"
           onPress={() => {
             setIsCapturing(false)
-            // TODO: show confirmation modal
+            //TODO: show confirmation modal
           }}
         />
       ) : (

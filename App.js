@@ -5,14 +5,24 @@ import StudyKeyEntry from './pages/study-key-entry'
 import DataCapture from './pages/data-capture'
 import HeaderButton from './components/header-button'
 
-export const TimeContext = createContext(null)
+export const CaptureContext = createContext(null)
 const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [startTime, setStartTime] = useState(0)
+  const [isCapturing, setIsCapturing] = useState(false)
+  const [participantData] = useState([])
 
   return (
-    <TimeContext.Provider value={{ startTime, setStartTime }}>
+    <CaptureContext.Provider
+      value={{
+        startTime,
+        setStartTime,
+        isCapturing,
+        setIsCapturing,
+        participantData,
+      }}
+    >
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -29,6 +39,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </TimeContext.Provider>
+    </CaptureContext.Provider>
   )
 }

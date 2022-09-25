@@ -1,10 +1,14 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
-import { TimeContext } from '../App'
+import { CaptureContext } from '../App'
 
 export default function Slider({ vertical, style }) {
-  const { startTime } = useContext(TimeContext)
-  const data = []
+  const { startTime, isCapturing, participantData } = useContext(CaptureContext)
+  const [data] = useState([])
+
+  useEffect(() => {
+    participantData[`${vertical ? 'vert' : 'horiz'}SliderInputs`] = data
+  }, [isCapturing])
 
   function handleChange(e) {
     const timestamp = Date.now() - startTime
@@ -16,7 +20,6 @@ export default function Slider({ vertical, style }) {
       vertical={vertical}
       containerStyle={style}
       onValuesChange={handleChange}
-      onValuesChangeFinish={() => console.log(data)}
       max={100}
     />
   )

@@ -1,13 +1,18 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Joystick } from 'react-joystick-component'
-import { TimeContext } from '../App'
+import { CaptureContext } from '../App'
 
 export default function JoystickWrapper() {
-  const { startTime } = useContext(TimeContext)
-  const data = []
+  const { startTime, isCapturing, participantData } = useContext(CaptureContext)
+  const [data] = useState([])
+
+  useEffect(() => {
+    participantData.joystickInputs = data
+  }, [isCapturing])
 
   function handleMove(e) {
     const timestamp = Date.now() - startTime
+    // TODO: move this calculation so it doesn't happen in real time
     const radians = Math.atan2(e.y, e.x) - Math.PI / 2
 
     let degrees = ((radians * 180) / Math.PI) * -1
