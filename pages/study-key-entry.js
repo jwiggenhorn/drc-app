@@ -20,7 +20,7 @@ export default function StudyKeyEntry({ navigation }) {
   }
 
   return (
-    <View style={styles.enterStudyKeyContainer}>
+    <View style={styles.centeredView}>
       <Text>Enter a study key:</Text>
       <TextInput
         style={styles.input}
