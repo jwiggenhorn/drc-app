@@ -6,7 +6,7 @@ export default function SwitchWrapper({ number = 'One' }) {
   const { startTime, isCapturing, participantData } = useContext(CaptureContext)
   const [isOn, setIsOn] = useState(false)
   const [data] = useState([])
-  console.log(participantData)
+
   useEffect(() => {
     participantData[`toggle${number}Inputs`] = data
   }, [isCapturing])
