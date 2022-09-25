@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   error: {
+    textAlign: 'center',
     margin: 12,
     color: 'red',
   },

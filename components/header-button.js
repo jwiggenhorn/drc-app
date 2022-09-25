@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { View, Button, Modal, Text } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { styles } from '../styles'
 import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
@@ -8,6 +9,8 @@ export default function HeaderButton() {
   const { setStartTime, isCapturing, setIsCapturing, participantData } =
     useContext(CaptureContext)
   const [modalVisible, setModalVisible] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const navigation = useNavigation()
 
   async function handleSubmit() {
     await fetch(`${API_URL}/study/data`, {
@@ -17,7 +20,14 @@ export default function HeaderButton() {
       },
       body: JSON.stringify(participantData),
     })
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data)
+        if (data.status == 201) {
+          navigation.navigate('Study Key Entry')
+        } else {
+          setErrorMessage(data.statusText)
+        }
+      })
       .catch((e) => console.error(e))
   }
 
@@ -62,6 +72,9 @@ export default function HeaderButton() {
               />
               <Button title="Submit" onPress={handleSubmit} />
             </View>
+            <Text style={styles.error}>
+              {errorMessage && `Error: ${errorMessage}`}
+            </Text>
           </View>
         </View>
       </Modal>
