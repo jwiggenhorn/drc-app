@@ -22,7 +22,10 @@ export default function HoldButton({ text, number = 'One' }) {
   }
 
   return (
-    <ClickNHold onStart={handleStart} onEnd={handleStop}>
+    <ClickNHold
+      onStart={isCapturing ? handleStart : null}
+      onEnd={isCapturing ? handleStop : null}
+    >
       <Button title={text} />
     </ClickNHold>
   )

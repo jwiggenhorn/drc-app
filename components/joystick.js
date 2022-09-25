@@ -29,5 +29,11 @@ export default function JoystickWrapper() {
     data.push({ timestamp, value: 0 })
   }
 
-  return <Joystick move={handleMove} stop={handleStop} throttle={10} />
+  return (
+    <Joystick
+      move={isCapturing ? handleMove : null}
+      stop={isCapturing ? handleStop : null}
+      throttle={10}
+    />
+  )
 }

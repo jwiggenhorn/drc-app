@@ -19,7 +19,7 @@ export default function Slider({ vertical, style }) {
     <MultiSlider
       vertical={vertical}
       containerStyle={style}
-      onValuesChange={handleChange}
+      onValuesChange={isCapturing ? handleChange : () => {}}
       max={100}
     />
   )
