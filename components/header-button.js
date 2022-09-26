@@ -12,6 +12,7 @@ export default function HeaderButton() {
     isCapturing,
     setIsCapturing,
     participantData,
+    setParticipantData,
   } = useContext(CaptureContext)
   const [modalVisible, setModalVisible] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -39,6 +40,7 @@ export default function HeaderButton() {
     })
       .then((data) => {
         if (data.status == 201) {
+          setParticipantData({})
           navigation.navigate('Study Key Entry')
         } else {
           setErrorMessage(data.statusText)
