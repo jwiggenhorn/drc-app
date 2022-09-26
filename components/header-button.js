@@ -6,11 +6,28 @@ import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
 
 export default function HeaderButton() {
-  const { setStartTime, isCapturing, setIsCapturing, participantData } =
-    useContext(CaptureContext)
+  const {
+    startTime,
+    setStartTime,
+    isCapturing,
+    setIsCapturing,
+    participantData,
+  } = useContext(CaptureContext)
   const [modalVisible, setModalVisible] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const navigation = useNavigation()
+
+  function handleStart() {
+    setStartTime(Date.now())
+    setIsCapturing(true)
+  }
+
+  function handleStop() {
+    setIsCapturing(false)
+    participantData.stopTime = Date.now() - startTime
+    // TODO: Pause the music
+    setModalVisible(true)
+  }
 
   async function handleSubmit() {
     await fetch(`${API_URL}/study/data`, {
@@ -21,7 +38,6 @@ export default function HeaderButton() {
       body: JSON.stringify(participantData),
     })
       .then((data) => {
-        console.log(data)
         if (data.status == 201) {
           navigation.navigate('Study Key Entry')
         } else {
@@ -31,25 +47,17 @@ export default function HeaderButton() {
       .catch((e) => console.error(e))
   }
 
+  function handleCancel() {
+    setModalVisible(false)
+    //TODO: resume the music
+  }
+
   return (
     <View style={styles.header}>
       {isCapturing ? (
-        <Button
-          title="Stop"
-          onPress={() => {
-            setIsCapturing(false)
-            // TODO: Pause the music
-            setModalVisible(true)
-          }}
-        />
+        <Button title="Stop" onPress={handleStop} />
       ) : (
-        <Button
-          title="Start"
-          onPress={() => {
-            setStartTime(Date.now())
-            setIsCapturing(true)
-          }}
-        />
+        <Button title="Start" onPress={handleStart} />
       )}
       <Modal
         visible={modalVisible}
@@ -62,14 +70,7 @@ export default function HeaderButton() {
               Do you want to stop capturing and submit the data?
             </Text>
             <View style={styles.modalButtons}>
-              <Button
-                color="gray"
-                title="Cancel"
-                onPress={() => {
-                  setModalVisible(false)
-                  //TODO: resume the music
-                }}
-              />
+              <Button color="gray" title="Cancel" onPress={handleCancel} />
               <Button title="Submit" onPress={handleSubmit} />
             </View>
             <Text style={styles.error}>
