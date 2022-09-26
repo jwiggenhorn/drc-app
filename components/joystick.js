@@ -12,16 +12,7 @@ export default function JoystickWrapper() {
 
   function handleMove(e) {
     const timestamp = Date.now() - startTime
-    // TODO: move this calculation so it doesn't happen in real time
-    const radians = Math.atan2(e.y, e.x) - Math.PI / 2
-
-    let degrees = ((radians * 180) / Math.PI) * -1
-    if (degrees < 0) degrees += 360.0
-
-    let value = Math.round((degrees * 2) / 60)
-    if (value == 0) value = 12
-
-    data.push({ timestamp, value })
+    data.push({ timestamp, x: e.x, y: e.y })
   }
 
   function handleStop() {
