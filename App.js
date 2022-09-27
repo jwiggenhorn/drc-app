@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator()
 export default function App() {
   const [startTime, setStartTime] = useState(0)
   const [isCapturing, setIsCapturing] = useState(false)
-  const [participantData] = useState({})
+  const [participantData, setParticipantData] = useState({})
 
   return (
     <CaptureContext.Provider
@@ -21,6 +21,7 @@ export default function App() {
         isCapturing,
         setIsCapturing,
         participantData,
+        setParticipantData,
       }}
     >
       <NavigationContainer>
