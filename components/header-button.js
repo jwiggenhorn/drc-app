@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { styles } from '../styles'
 import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
+import { errorMessages } from '../error-messages'
 
 export default function HeaderButton() {
   const {
@@ -43,7 +44,7 @@ export default function HeaderButton() {
           setParticipantData({})
           navigation.navigate('Study Key Entry')
         } else {
-          setErrorMessage(data.statusText)
+          setErrorMessage(errorMessages.get(data.status))
         }
       })
       .catch((e) => console.error(e))
@@ -57,9 +58,9 @@ export default function HeaderButton() {
   return (
     <View style={styles.header}>
       {isCapturing ? (
-        <Button title="Stop" onPress={handleStop} />
+        <Button title="Stop" color="red" onPress={handleStop} />
       ) : (
-        <Button title="Start" onPress={handleStart} />
+        <Button title="Start" color="green" onPress={handleStart} />
       )}
       <Modal
         visible={modalVisible}
@@ -75,9 +76,7 @@ export default function HeaderButton() {
               <Button color="gray" title="Cancel" onPress={handleCancel} />
               <Button title="Submit" onPress={handleSubmit} />
             </View>
-            <Text style={styles.error}>
-              {errorMessage && `Error: ${errorMessage}`}
-            </Text>
+            <Text style={styles.error}>{errorMessage}</Text>
           </View>
         </View>
       </Modal>
