@@ -9,19 +9,22 @@ import MultiControls from '../components/multi-controls'
 export default function DataCapture({ route }) {
   return (
     <View style={styles.dataCaptureContainer}>
-      <Control profile={route.params.profile} />
+      <Control
+        profile={route.params.profile}
+        joystickSensitivity={route.params.joystickSensitivity}
+      />
     </View>
   )
 }
 
-function Control({ profile }) {
+function Control({ profile, joystickSensitivity }) {
   switch (profile) {
     case 0:
       return <Slider vertical />
     case 1:
       return <Slider />
     case 2:
-      return <Joystick />
+      return <Joystick sensitivity={joystickSensitivity} />
     case 3:
       return <Switch />
     case 4:
@@ -34,7 +37,7 @@ function Control({ profile }) {
     case 5:
       return (
         <MultiControls>
-          <Joystick />
+          <Joystick sensitivity={joystickSensitivity} />
           <Slider style={{ paddingLeft: 30 }} vertical />
         </MultiControls>
       )
@@ -65,7 +68,7 @@ function Control({ profile }) {
     case 10:
       return (
         <MultiControls>
-          <Joystick />
+          <Joystick sensitivity={joystickSensitivity} />
           <HoldButton text="PUSH" />
         </MultiControls>
       )
@@ -73,14 +76,14 @@ function Control({ profile }) {
       return (
         <MultiControls>
           <Slider style={{ paddingLeft: 30 }} vertical />
-          <Joystick />
+          <Joystick sensitivity={joystickSensitivity} />
         </MultiControls>
       )
     case 12:
       return (
         <MultiControls>
           <Slider style={{ paddingLeft: 100 }} />
-          <Joystick />
+          <Joystick sensitivity={joystickSensitivity} />
         </MultiControls>
       )
     case 13:
@@ -101,7 +104,7 @@ function Control({ profile }) {
       return (
         <MultiControls>
           <Switch />
-          <Joystick />
+          <Joystick sensitivity={joystickSensitivity} />
         </MultiControls>
       )
     case 16:

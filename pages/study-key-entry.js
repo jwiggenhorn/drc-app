@@ -18,7 +18,10 @@ export default function StudyKeyEntry({ navigation }) {
       })
       .then((data) => {
         participantData.key = studyKey
-        navigation.navigate('Data Capture', { profile: data.inputProfile })
+        navigation.navigate('Data Capture', {
+          profile: data.inputProfile,
+          joystickSensitivity: data.joystickSensitivity,
+        })
       })
       .catch((e) => setErrorMessage(e.message))
   }
