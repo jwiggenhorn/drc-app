@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-native'
 import ClickNHold from 'react-click-n-hold'
 import { CaptureContext } from '../App'
+import CustomButton from './custom-button'
 
 export default function HoldButton({ text, number = 'One' }) {
   const { startTime, isCapturing, participantData } = useContext(CaptureContext)
@@ -26,7 +27,7 @@ export default function HoldButton({ text, number = 'One' }) {
       onStart={isCapturing ? handleStart : null}
       onEnd={isCapturing ? handleStop : null}
     >
-      <Button title={text} />
+      <CustomButton title={text} />
     </ClickNHold>
   )
 }

@@ -4,6 +4,7 @@ import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
 import { styles } from '../styles'
 import { errorMessages } from '../error-messages'
+import CustomButton from '../components/custom-button'
 
 export default function StudyKeyEntry({ navigation }) {
   const { participantData } = useContext(CaptureContext)
@@ -37,7 +38,7 @@ export default function StudyKeyEntry({ navigation }) {
         }}
         value={studyKey}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      <CustomButton title="Submit" onPress={handleSubmit} />
       <Text style={styles.error}>{errorMessage}</Text>
     </View>
   )

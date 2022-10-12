@@ -58,4 +58,23 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  customButtonContainer: {
+    elevation: 8,
+    backgroundColor: '#00BFFF',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  customButtonText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+  },
+  shadowProp: {
+    shadowColor: '#C0C0C0',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+  },
 })
