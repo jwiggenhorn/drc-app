@@ -1,9 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
 import { Joystick } from 'react-joystick-component'
 import { CaptureContext } from '../App'
-import { API_URL } from '../environment-images'
+import { IMAGES_URL } from '../environment'
 
 export default function JoystickWrapper({ sensitivity }) {
+  const joystickImage =
+    IMAGES_URL +
+    (sensitivity == 'low'
+      ? '/low-sensitivity-joystick.png'
+      : '/high-sensitivity-joystick.png')
   const { startTime, isCapturing, participantData } = useContext(CaptureContext)
   const [data] = useState([])
 
@@ -21,28 +26,13 @@ export default function JoystickWrapper({ sensitivity }) {
     data.push({ timestamp, value: 0 })
   }
 
-  function handleSensitivityImage() {
-    let baseImageURL = API_URL
-
-    if (sensitivity == "low")
-    {
-      baseImageURL += "/joystick-background-low-sensitivity.png"
-    }
-    else if (sensitivity == "high")
-    {
-      baseImageURL += "/joystick-background-high-sensitivity.png"
-    }
-
-    return baseImageURL
-  }
-
   return (
     <Joystick
       move={isCapturing ? handleMove : null}
       stop={isCapturing ? handleStop : null}
       throttle={100}
-      stickImage={API_URL + "/stick-image.png"}
-      baseImage={handleSensitivityImage()}
+      stickImage={joystickImage}
+      baseColor="#5A5A5A"
     />
   )
 }

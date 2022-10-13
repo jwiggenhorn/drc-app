@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
-import { View, Button, Modal, Text } from 'react-native'
+import { View, Modal, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { styles } from '../styles'
 import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
 import { errorMessages } from '../error-messages'
-import CustomButton from './custom-button'
+import Button from './custom-button'
 
 export default function HeaderButton() {
   const {
@@ -59,9 +59,9 @@ export default function HeaderButton() {
   return (
     <View style={styles.header}>
       {isCapturing ? (
-        <CustomButton title="Stop" color="red" onPress={handleStop} />
+        <Button title="Stop" color="red" onPress={handleStop} />
       ) : (
-        <CustomButton title="Start" color="green" onPress={handleStart} />
+        <Button title="Start" color="green" onPress={handleStart} />
       )}
       <Modal
         visible={modalVisible}
@@ -74,8 +74,8 @@ export default function HeaderButton() {
               Do you want to stop capturing and submit the data?
             </Text>
             <View style={styles.modalButtons}>
-              <CustomButton color="gray" title="Cancel" onPress={handleCancel} />
-              <CustomButton title="Submit" onPress={handleSubmit} />
+              <Button color="gray" title="Cancel" onPress={handleCancel} />
+              <Button title="Submit" onPress={handleSubmit} />
             </View>
             <Text style={styles.error}>{errorMessage}</Text>
           </View>

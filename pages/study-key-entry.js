@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react'
-import { Text, View, TextInput, Button } from 'react-native'
+import { Text, View, TextInput } from 'react-native'
 import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
 import { styles } from '../styles'
 import { errorMessages } from '../error-messages'
-import CustomButton from '../components/custom-button'
+import Button from '../components/custom-button'
 
 export default function StudyKeyEntry({ navigation }) {
   const { participantData } = useContext(CaptureContext)
@@ -38,7 +38,7 @@ export default function StudyKeyEntry({ navigation }) {
         }}
         value={studyKey}
       />
-      <CustomButton title="Submit" onPress={handleSubmit} />
+      <Button title="Submit" onPress={handleSubmit} />
       <Text style={styles.error}>{errorMessage}</Text>
     </View>
   )

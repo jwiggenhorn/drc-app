@@ -1,25 +1,24 @@
-import React from "react";
-import { View, Button, TouchableOpacity, Text } from "react-native";
-import { styles } from '../styles';
+import React from 'react'
+import { TouchableOpacity, Text } from 'react-native'
+import { styles } from '../styles'
 
 TouchableOpacity.defaultProps = { activeOpacity: 0.6 }
 
-export default function CustomButton({ onPress, title, color }) {
+export default React.forwardRef(function Button(
+  { color, onPress, title },
+  ref
+) {
+  const bgColor = {
+    backgroundColor: color || '#00BFFF',
+  }
 
-    function handleColor() {
-        return {
-            ...styles,
-            elevation: 8,
-            borderRadius: 10,
-            paddingVertical: 10,
-            paddingHorizontal: 12,
-            backgroundColor : color || "#00BFFF"
-        }
-    }
-
-    return (
-        <TouchableOpacity onPress={onPress} style={[handleColor(), styles.shadowProp]}>
-            <Text style={styles.customButtonText}>{title}</Text>
-        </TouchableOpacity>
-    )
-}
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[bgColor, styles.customButtonContainer]}
+      ref={ref}
+    >
+      <Text style={styles.customButtonText}>{title}</Text>
+    </TouchableOpacity>
+  )
+})
