@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { Button } from 'react-native'
 import ClickNHold from 'react-click-n-hold'
 import { CaptureContext } from '../App'
+import Button from './custom-button'
 
 export default function HoldButton({ text, number = 'One' }) {
   const { startTime, isCapturing, participantData } = useContext(CaptureContext)

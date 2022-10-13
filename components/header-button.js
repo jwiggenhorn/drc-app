@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react'
-import { View, Button, Modal, Text } from 'react-native'
+import { View, Modal, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { styles } from '../styles'
 import { CaptureContext } from '../App'
 import { API_URL } from '../environment'
 import { errorMessages } from '../error-messages'
+import Button from './custom-button'
 
 export default function HeaderButton() {
   const {
