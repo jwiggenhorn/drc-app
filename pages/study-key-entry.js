@@ -7,7 +7,7 @@ import { errorMessages } from '../error-messages'
 import Button from '../components/custom-button'
 
 export default function StudyKeyEntry({ navigation }) {
-  const { participantData } = useContext(CaptureContext)
+  const { participantData, sound } = useContext(CaptureContext)
   const [studyKey, setStudyKey] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -17,8 +17,9 @@ export default function StudyKeyEntry({ navigation }) {
         if (response.status == 200) return response.json()
         throw new Error(errorMessages.get(response.status))
       })
-      .then((data) => {
+      .then(async (data) => {
         participantData.key = studyKey
+        if (data.url) await sound.loadAsync({ uri: data.url })
         navigation.navigate('Data Capture', {
           profile: data.inputProfile,
           joystickSensitivity: data.joystickSensitivity,

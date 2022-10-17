@@ -15,20 +15,22 @@ export default function HeaderButton() {
     setIsCapturing,
     participantData,
     setParticipantData,
+    sound,
   } = useContext(CaptureContext)
   const [modalVisible, setModalVisible] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const navigation = useNavigation()
 
-  function handleStart() {
+  async function handleStart() {
+    if (sound._loaded) await sound.playAsync()
     setStartTime(Date.now())
     setIsCapturing(true)
   }
 
-  function handleStop() {
+  async function handleStop() {
     setIsCapturing(false)
     participantData.stopTime = Date.now() - startTime
-    // TODO: Pause the music
+    if (sound._loaded) await sound.pauseAsync()
     setModalVisible(true)
   }
 
@@ -40,9 +42,10 @@ export default function HeaderButton() {
       },
       body: JSON.stringify(participantData),
     })
-      .then((data) => {
+      .then(async (data) => {
         if (data.status == 201) {
           setParticipantData({})
+          if (sound._loaded) await sound.unloadAsync()
           navigation.navigate('Study Key Entry')
         } else {
           setErrorMessage(errorMessages.get(data.status))
@@ -51,9 +54,10 @@ export default function HeaderButton() {
       .catch((e) => console.error(e))
   }
 
-  function handleCancel() {
+  async function handleCancel() {
     setModalVisible(false)
-    //TODO: resume the music
+    setIsCapturing(true)
+    if (sound._loaded) await sound.playAsync()
   }
 
   return (

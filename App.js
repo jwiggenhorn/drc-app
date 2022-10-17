@@ -1,12 +1,14 @@
 import { createContext, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Audio } from 'expo-av'
 import StudyKeyEntry from './pages/study-key-entry'
 import DataCapture from './pages/data-capture'
 import HeaderButton from './components/header-button'
 
 export const CaptureContext = createContext(null)
 const Stack = createNativeStackNavigator()
+const sound = new Audio.Sound()
 
 export default function App() {
   const [startTime, setStartTime] = useState(0)
@@ -22,6 +24,7 @@ export default function App() {
         setIsCapturing,
         participantData,
         setParticipantData,
+        sound,
       }}
     >
       <NavigationContainer>
