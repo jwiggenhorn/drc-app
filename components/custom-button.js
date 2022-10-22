@@ -5,7 +5,7 @@ import { styles } from '../styles'
 TouchableOpacity.defaultProps = { activeOpacity: 0.6 }
 
 export default React.forwardRef(function Button(
-  { color, onPress, title },
+  { color, onPress, title, onPressIn, onPressOut },
   ref
 ) {
   const bgColor = {
@@ -17,6 +17,8 @@ export default React.forwardRef(function Button(
       onPress={onPress}
       style={[bgColor, styles.customButtonContainer]}
       ref={ref}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
     >
       <Text style={styles.customButtonText}>{title}</Text>
     </TouchableOpacity>
