@@ -15,12 +15,12 @@ export default React.forwardRef(function Button(
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[bgColor, styles.customButtonContainer]}
+      style={[bgColor, styles.buttonContainer]}
       ref={ref}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
     >
-      <Text style={styles.customButtonText}>{title}</Text>
+      <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   )
 })
