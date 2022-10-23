@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  customButtonContainer: {
+  buttonContainer: {
     elevation: 8,
     borderRadius: 10,
     paddingVertical: 10,
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 3,
   },
-  customButtonText: {
+  buttonText: {
     textAlign: 'center',
     fontSize: 16,
     color: '#FFFFFF',

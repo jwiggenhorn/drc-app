@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { styles } from '../styles'
 import Slider from '../components/slider'
-import Joystick from '../components/joystick'
+import Joystick from '../components/joystick-wrapper'
 import Switch from '../components/switch'
 import HoldButton from '../components/hold-button'
 import MultiControls from '../components/multi-controls'

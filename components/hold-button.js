@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import ClickNHold from 'react-click-n-hold'
 import { CaptureContext } from '../App'
 import Button from './custom-button'
 
