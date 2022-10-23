@@ -38,12 +38,7 @@ export default function Joystick({ onMove, onStop, stickImage }) {
         }}
         {...panResponder.panHandlers}
       >
-        <Image
-          source={{
-            uri: stickImage,
-          }}
-          style={styles.image}
-        />
+        <Image source={stickImage} style={styles.image} />
       </Animated.View>
     </View>
   )
