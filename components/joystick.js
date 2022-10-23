@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { Joystick } from 'react-joystick-component'
+import Joystick from './custom-joystick'
 import { CaptureContext } from '../App'
 import { IMAGES_URL } from '../environment'
 
@@ -18,7 +18,7 @@ export default function JoystickWrapper({ sensitivity }) {
 
   function handleMove(e) {
     const timestamp = Date.now() - startTime
-    data.push({ timestamp, x: e.x, y: e.y })
+    data.push({ timestamp, x: e.moveX, y: e.moveY })
   }
 
   function handleStop() {
@@ -28,11 +28,10 @@ export default function JoystickWrapper({ sensitivity }) {
 
   return (
     <Joystick
-      move={isCapturing ? handleMove : null}
-      stop={isCapturing ? handleStop : null}
-      throttle={100}
+      onMove={isCapturing ? handleMove : null}
+      onStop={isCapturing ? handleStop : null}
       stickImage={joystickImage}
-      baseColor="#5A5A5A"
+      // baseColor="#5A5A5A"
     />
   )
 }
