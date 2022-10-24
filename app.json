@@ -1,8 +1,10 @@
 {
   "expo": {
-    "name": "drc-app",
+    "name": "DRC Interface",
+    "description": "Digital Response Capture Interface for use with the DRC Admin Panel",
     "slug": "drc-app",
     "version": "1.0.0",
+    "githubUrl": "https://github.com/jwiggenhorn/drc-app",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,12 +24,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jwiggenhorn.drcapp"
+    },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "build": {
-        "babel": { "include": ["@ptomasroos/react-native-multi-slider"] }
+        "babel": {
+          "include": ["@ptomasroos/react-native-multi-slider"]
+        }
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "116363e3-eebd-4c73-964e-7e1dbef6f0ea"
       }
     }
   }
