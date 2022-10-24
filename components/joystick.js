@@ -13,7 +13,7 @@ export default function Joystick({ onMove, onStop, stickImage }) {
     onPanResponderMove: (_, gestureState) => {
       const { dx, dy } = gestureState
       const dist = Math.sqrt(dx * dx + dy * dy)
-      scale = Math.min(radius, dist) / dist
+      let scale = Math.min(radius, dist) / dist
       if (isNaN(scale)) scale = 0
       pan.setValue({
         x: dx * scale,
