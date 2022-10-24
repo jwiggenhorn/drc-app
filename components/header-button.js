@@ -35,23 +35,21 @@ export default function HeaderButton() {
   }
 
   async function handleSubmit() {
-    await fetch(`${API_URL}/study/data`, {
+    const response = await fetch(`${API_URL}/study/data`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(participantData),
     })
-      .then(async (data) => {
-        if (data.status == 201) {
-          setParticipantData({})
-          if (sound._loaded) await sound.unloadAsync()
-          navigation.navigate('Study Key Entry')
-        } else {
-          setErrorMessage(errorMessages.get(data.status))
-        }
-      })
-      .catch((e) => console.error(e))
+    if (response.ok) {
+      if (sound._loaded) await sound.unloadAsync()
+      setParticipantData({})
+      setModalVisible(false)
+      navigation.navigate('Study Key Entry')
+    } else {
+      setErrorMessage(errorMessages.get(response.status))
+    }
   }
 
   async function handleCancel() {
@@ -71,6 +69,7 @@ export default function HeaderButton() {
         visible={modalVisible}
         animationType="slide"
         onRequestClose={() => setModalVisible(false)}
+        supportedOrientations={['landscape']}
       >
         <View style={styles.centeredView}>
           <View style={styles.modal}>
